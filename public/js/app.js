@@ -15,7 +15,7 @@
   \*****************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("//require('./bootstrap');\n__webpack_require__(/*! mdb-ui-kit */ \"./node_modules/mdb-ui-kit/js/mdb.min.js\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvYXBwLmpzLmpzIiwibWFwcGluZ3MiOiJBQUFBO0FBRUFBLG1CQUFPLENBQUMsMkRBQUQsQ0FBUCIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9qcy9hcHAuanM/Y2VkNiJdLCJzb3VyY2VzQ29udGVudCI6WyIvL3JlcXVpcmUoJy4vYm9vdHN0cmFwJyk7XG5cbnJlcXVpcmUoJ21kYi11aS1raXQnKVxuXG4iXSwibmFtZXMiOlsicmVxdWlyZSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
+eval("//\n__webpack_require__(/*! mdb-ui-kit */ \"./node_modules/mdb-ui-kit/js/mdb.min.js\"); // require('bootstrap')//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvYXBwLmpzLmpzIiwibWFwcGluZ3MiOiJBQUFBO0FBRUFBLG1CQUFPLENBQUMsMkRBQUQsQ0FBUCxDLENBQ0EiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvYXBwLmpzP2NlZDYiXSwic291cmNlc0NvbnRlbnQiOlsiLy9cblxucmVxdWlyZSgnbWRiLXVpLWtpdCcpXG4vLyByZXF1aXJlKCdib290c3RyYXAnKVxuXG5cbiJdLCJuYW1lcyI6WyJyZXF1aXJlIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
 
 /***/ }),
 

@@ -1,4 +1,6 @@
-//require('./bootstrap');
+//
 
 require('mdb-ui-kit')
+// require('bootstrap')
+
 
