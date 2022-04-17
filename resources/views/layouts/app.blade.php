@@ -67,19 +67,16 @@
             <!-- Right links -->
             <ul class="navbar-nav ms-auto d-flex flex-row">
               <!-- Notification dropdown -->
-              <li class="nav-item dropdown">
-                <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
-                  role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                  <i class="fas fa-cart-plus"></i>
-                  <span class="badge rounded-pill badge-notification bg-danger">1</span>
+              <li >
+                <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow px-4" href="{{route('cart.list')}}"
+                  >
+                  <i class="fa fa-cart-plus"></i>
+                  @if (!Cart::getTotalQuantity()==0)
+                  <span style="font-size: 0.8rem" class="badge rounded-pill badge-notification bg-danger">{{ Cart::getTotalQuantity()}}</span>
+                  @endif
+
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Some news</a></li>
-                  <li><a class="dropdown-item" href="#">Another news</a></li>
-                  <li>
-                    <a class="dropdown-item" href="#">Something else</a>
-                  </li>
-                </ul>
+
               </li>
 
 
