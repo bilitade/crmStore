@@ -18,4 +18,13 @@ class Product extends Model
         'store_id'
     ];
 
+    public function item(){
+        return $this->belongsTo(Item::class);
+
+    }
+    public function category(){
+        $this->belongsTo(Category::class);
+
+       }
+
 }

@@ -12,6 +12,11 @@ class Order extends Model
        "customer",
        "status",
        "store_id",
-       
+
     ];
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
 }

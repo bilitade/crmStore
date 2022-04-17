@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -13,7 +15,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-     
+        $category=Category::paginate(5);
+
+        return view("category.category_view")->with("categories", $category);
+
     }
 
     /**
@@ -34,8 +39,26 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+
+        $valid = $request->validate([
+            'name' => "required",
+
+
+        ]);
+
+        $slug=Str::slug($request['name']);
+        Category::Create([
+            "name"=>$request["name"],
+            "slug"=>$slug
+
+
+        ]);
+
+        return back()
+        ->with('success', 'You have successfully created.');
+
+}
+
 
     /**
      * Display the specified resource.
@@ -56,7 +79,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cate=Category::findorFail($id);
+      return view('category.edit_category')->with("category", $cate);
     }
 
     /**
@@ -68,7 +92,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $valid = $request->validate([
+            'name' => "required",
+
+
+        ]);
+        $cate=Category::find($id);
+
+        $slug=Str::slug($request['name']);
+        $cate->update([
+            "name"=>$request["name"],
+            "slug"=>$slug
+
+
+        ]);
+
+        return back()
+        ->with('success', 'You have successfully update.');
+
     }
 
     /**
@@ -77,8 +118,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+
+     $cate=Category::findorFail($request->id);
+     $cate->delete();
+     return back()
+     ->with('success', 'You have successfully Deleted');
     }
+
 }

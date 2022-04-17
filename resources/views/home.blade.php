@@ -38,8 +38,8 @@
             {{-- {{ (strpos(Route::currentRouteName(), 'products.index') == 0) ? 'active' : '' }} --}}
           <i class="fas fa-chart-area fa-fw me-3"></i><span>Product </span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-list-alt fa-fw me-3"></i><span>Category</span></a>
+        <a href="{{route('category.index')}}" class="list-group-item list-group-item-action py-2 ripple {{  request()->routeIs('category.*') ? 'active' : '' }} "><i
+            class="fas fa-list-alt fa-fw me-3  "></i><span>Category</span></a>
         <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
             class="fas fa fa-truck fa-fw me-3"></i><span>Orders</span></a>
 
