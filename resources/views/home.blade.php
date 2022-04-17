@@ -32,30 +32,22 @@
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
         <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
-          <i class="fas fa-chart-area fa-fw me-3"></i><span>Webiste traffic </span>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-lock fa-fw me-3"></i><span>Password</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-chart-line fa-fw me-3"></i><span>Analytics</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-          <i class="fas fa-chart-pie fa-fw me-3"></i><span>SEO</span>
+        <a href="{{route("products.index") }}" class="list-group-item list-group-item-action py-2 ripple  {{  request()->routeIs('products.*') ? 'active' : '' }} ">
+            {{-- {{ (strpos(Route::currentRouteName(), 'products.index') == 0) ? 'active' : '' }} --}}
+          <i class="fas fa-chart-area fa-fw me-3"></i><span>Product </span>
         </a>
         <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-chart-bar fa-fw me-3"></i><span>Orders</span></a>
+            class="fas fa-list-alt fa-fw me-3"></i><span>Category</span></a>
         <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-globe fa-fw me-3"></i><span>International</span></a>
+            class="fas fa fa-truck fa-fw me-3"></i><span>Orders</span></a>
+
         <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-building fa-fw me-3"></i><span>Partners</span></a>
+            class="fas fa-users fa-fw me-3"></i><span>Manage User</span></a>
         <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-calendar fa-fw me-3"></i><span>Calendar</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-users fa-fw me-3"></i><span>Users</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a>
+            class="fas fa-globe fa-fw me-3"></i><span>Manage Store</span></a>
+
       </div>
     </div>
   </nav>
@@ -68,7 +60,7 @@
   <!--Main layout-->
   <main style="margin-top: 58px">
     <div class="container pt-4">
-      <!-- Section: Main chart -->
+      {{-- <!-- Section: Main chart -->
       <section class="mb-4">
         <div class="card">
           <div class="card-header py-3">
@@ -478,7 +470,14 @@
         </div>
       </section>
       <!--Section: Statistics with subtitles-->
-    </div>
+    </div> --}}
+
+
+    @yield('page')
+
+
+
+
   </main>
   <!--Main layout-->
 

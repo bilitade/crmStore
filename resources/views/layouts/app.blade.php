@@ -14,6 +14,8 @@
   <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
   <!-- Custom scripts -->
   <script type="text/javascript" src="{{asset('js/admin.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/imagepreview.js')}}"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -23,6 +25,7 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}" />
     <!-- Custom styles -->
     <link rel="stylesheet" href="{{asset('css/admin.css')}}" />
+
 
 
 
