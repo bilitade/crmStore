@@ -94,6 +94,10 @@ class CartController extends Controller
        "customer"=>$request["name"],
        "store_id"=>1,
        "status"=>"paid",
+       "Address"=>$request["Address"],
+       "phone"=>$request["phone"],
+       "email"=>$request["email"],
+       "totalPrice"=>Cart::getTotal(),
 
 
     ]);
@@ -110,7 +114,7 @@ class CartController extends Controller
           ]);
 
          }
-
+         Cart::clear();
 
 
   return view('storefront.thanks')->with('orderid', $order->id);

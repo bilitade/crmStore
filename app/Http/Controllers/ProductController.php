@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -54,9 +55,11 @@ class ProductController extends Controller
         $imageName = time() . '.' . $request->image->extension();
 
         $request->image->move(public_path('uploads/product_image'), $imageName);
+        $slug=Str::slug($request['name']);
         $post = Product::create([
             'name' => $valid['name'],
-            'store_id' => "1",
+            'store_id' => 1,
+            "slug"=>$slug,
             "status" => "active",
             "category_id" => 1,
             'description' => $request["description"],
@@ -139,7 +142,7 @@ class ProductController extends Controller
 
       $post = $product->update([
         'name' => $valid['name'],
-        'store_id' => "1",
+        'store_id' => 1,
         "status" => "active",
         "category_id" => 1,
         'description' => $request["description"],

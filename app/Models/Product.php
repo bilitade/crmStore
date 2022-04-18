@@ -12,18 +12,19 @@ class Product extends Model
         'name',
         'description',
         'image',
+        'slug',
         'price',
         'status',
         'user_id',
         'store_id'
     ];
 
-    public function item(){
-        return $this->belongsTo(Item::class);
+    // public function item(){
+    //     return $this->belongsTo(Item::class);
 
-    }
+    // }
     public function category(){
-        $this->belongsTo(Category::class);
+       return $this->belongsTo(Category::class);
 
        }
 

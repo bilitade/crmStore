@@ -14,15 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('stores', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
+            $table->unsignedBigInteger('id');
+
+            $table->foreign('id')
             ->references('id')
             ->on('users')
             ->onDelete('cascade');
 
             $table->string("name");
             $table->string("description");
+            $table->string("Address");
+            $table->string('status');
 
             $table->timestamps();
         });

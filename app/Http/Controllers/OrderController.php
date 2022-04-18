@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
+use League\CommonMark\Node\Query\OrExpr;
 
 class OrderController extends Controller
 {
@@ -13,7 +15,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+
+       $order= Order::paginate();
+
+        return view('orders.order_view')->with('orders', $order);
+
     }
 
     /**
@@ -34,7 +40,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -45,7 +51,20 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $order=Order::findorFail($id);
+         $orderitems=$order->items;
+          foreach($orderitems as $item){
+
+            $item->product;
+          }
+
+// dd($orderitems);
+
+        return view('orders.orderitem_view')->with(['orderItems'=>$orderitems, 'order'=>$order]);
+
+
+
     }
 
     /**
@@ -56,7 +75,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -68,7 +87,16 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+           $order=Order::findorFail($id);
+           if($order) {
+            $order->status = 'completed';
+            $order->save();
+        }
+        return back()
+        ->with('success', 'You have successfully Updated');
+
+
     }
 
     /**

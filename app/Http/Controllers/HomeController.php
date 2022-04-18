@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Store;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['dashboard']);
     }
 
     /**
@@ -25,4 +26,12 @@ class HomeController extends Controller
     {
         return view('home');
     }
+public function  dashboard(){
+
+    return view('dashboard.dash_view');
+}
+
+
+
+
 }

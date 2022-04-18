@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MystoreController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\StoreFrontController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,11 +34,38 @@ Route::get('checkout', [CartController::class, 'checkout'])->name('cart.checkout
 Route::get('order', [CartController::class, 'order'])->name('order.index');
 Route::Post('order', [CartController::class, 'order'])->name('order.store');
 
+Route::get('orders', [OrderController::class, 'index'])->name('orders');
+Route::get('orders/{id}/items', [OrderController::class, 'show'])->name('orders.show');
+Route::post('orders/{id}/items', [OrderController::class, 'update'])->name('orders.update');
+
+Route::resource('mystore',MystoreController::class)->except(['create','edit','delete','show']);
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+
+
 Route::get('/store',[CartController::class, 'index']);
+
+// all stores of client
+Route::get('/stores',[StoreFrontController::class,'allstores']);
+// products  with and without category
+Route::get('/store/{clientID}/products',[StoreFrontController::class,'index'])->name("st.prod");
+Route::get('/store/{clientID}/{slug}',[StoreFrontController::class,'singleProduct'])->name("single.prod");
+Route::get('/store/{clientID}/{CateId}/products',[StoreFrontController::class,'productsByCategory'])->name("cate.pro");
+// all store categories
+Route::get('/store/{clientID}/categories',[StoreFrontController::class,'categories']);
+//single category
+Route::get('/store/{clientID}/{Cslug}',[StoreFrontController::class,'category']);
+
+//single product through category
+Route::get('/store/{clientID}/{Cslug}/{Pslug}',[StoreFrontController::class,'category']);
+
+
 Auth::routes();
+
 Route::get('/', function () {
-    return view('public.home_view');
+    return view('storefront.product_view');
 });
 
 ;

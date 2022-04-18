@@ -18,6 +18,11 @@ return new class extends Migration
             $table->unsignedBigInteger('store_id');
             $table->string("customer");
             $table->string("status")->default("paid");
+            $table->double("totalPrice");
+            $table->string("email");
+            $table->string("Address");
+            $table->string("phone");
+
             $table->timestamps();
         });
     }

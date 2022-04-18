@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("store_id")->default(1);
+            $table->unsignedBigInteger("store_id");
             $table->string("user_id")->nullable();
+            $table->string("slug");
             $table->string("name");
             $table->string("description");
             $table->string("category_id")->nullable();

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Store;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
-class CategoryController extends Controller
+class MystoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category=Category::paginate(5);
+        $store= Store::first();
 
-        return view("category.category_view")->with("categories", $category);
 
+        return view('dashboard.myStore', compact('store'));
     }
 
     /**
@@ -39,27 +38,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-
-        $valid = $request->validate([
-            'name' => "required",
-
-
-        ]);
-
-        $slug=Str::slug($request['name']);
-        Category::Create([
-            "name"=>$request["name"],
-            "slug"=>$slug,
-            "store_id"=>1
+          $store=Store::Create([
+              "id"=> 2,
+              "description"=>$request["description"],
+              "Address"=>$request["Address"],
+              "name"=>$request["name"],
+              "status"=>"active",
 
 
-        ]);
+          ]);
+          return back()
+          ->with('success', 'You have successfully created');
 
-        return back()
-        ->with('success', 'You have successfully created.');
 
-}
-
+    }
 
     /**
      * Display the specified resource.
@@ -80,8 +72,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $cate=Category::findorFail($id);
-      return view('category.edit_category')->with("category", $cate);
+        //
     }
 
     /**
@@ -92,25 +83,16 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $valid = $request->validate([
-            'name' => "required",
+    {  $store= Store::findorFail($id);
 
-
-        ]);
-        $cate=Category::find($id);
-
-        $slug=Str::slug($request['name']);
-        $cate->update([
-            "name"=>$request["name"],
-            "slug"=>$slug,
-            "store_id"=>1
-
-
-        ]);
-
+        if($store) {
+            $store->name = $request["name"];
+            $store->description = $request["description"];
+            $store->Address = $request["Address"];
+            $store->save();
+        }
         return back()
-        ->with('success', 'You have successfully update.');
+        ->with('success', 'You have successfully Updated');
 
     }
 
@@ -120,13 +102,8 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-
-     $cate=Category::findorFail($request->id);
-     $cate->delete();
-     return back()
-     ->with('success', 'You have successfully Deleted');
+        //
     }
-
 }

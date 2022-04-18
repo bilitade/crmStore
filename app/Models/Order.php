@@ -12,6 +12,10 @@ class Order extends Model
        "customer",
        "status",
        "store_id",
+       "email",
+       "Address",
+       "totalPrice",
+       "phone"
 
     ];
 
