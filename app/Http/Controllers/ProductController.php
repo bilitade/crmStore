@@ -118,10 +118,10 @@ class ProductController extends Controller
     {
 
 
-
+        $category =Category::where("store_id",Auth::id())->get();
 
         $product = Product::find($id);
-        return view('product.edit_product')->with("product", $product);
+        return view('product.edit_product')->with(["product"=> $product,'categories'=>$category]);
     }
 
     /**
@@ -143,6 +143,7 @@ class ProductController extends Controller
 
 
       $product=Product::findOrFail($id);
+      $categoryid = intval( $request['category'] );
 
       $image_path = "uploads/product_image/" . $product->image;
       if (File::exists($image_path)) {
@@ -158,9 +159,9 @@ class ProductController extends Controller
         'name' => $valid['name'],
         'store_id' => 1,
         "status" => "active",
-        "category_id" => 1,
+        "category_id" => $categoryid,
         'description' => $request["description"],
-        'user_id' => 1,
+        'user_id' => Auth::Id(),
         'price' => $request["price"],
         'image' => $imageName,
 

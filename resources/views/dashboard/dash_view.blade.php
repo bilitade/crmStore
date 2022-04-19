@@ -22,7 +22,7 @@
                     <i class="fas fa-truck text-info fa-3x"></i>
                   </div>
                   <div class="text-end">
-                    <h3>278</h3>
+                    <h3>{{$orders}}</h3>
                     <p class="mb-0">Total Orders</p>
                   </div>
                 </div>
@@ -37,8 +37,8 @@
                     <i class="far fa-list-alt text-warning fa-3x"></i>
                   </div>
                   <div class="text-end">
-                    <h3>156</h3>
-                    <p class="mb-0">Category</p>
+                    <h3>{{$categories}}</h3>
+                    <p class="mb-0">Categories</p>
                   </div>
                 </div>
               </div>
@@ -52,28 +52,14 @@
                     <i class="fas fa-cube text-success fa-3x"></i>
                   </div>
                   <div class="text-end">
-                    <h3>25</h3>
+                    <h3>{{$products}}</h3>
                     <p class="mb-0">Products</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-xl-3 col-sm-6 col-12 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between px-md-1">
-                  <div class="align-self-center">
-                    <i class="fas fa-users  text-danger fa-3x"></i>
-                  </div>
-                  <div class="text-end">
-                    <h3>423</h3>
-                    <p class="mb-0">Customer
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           </div>
           <div class="col-xl-3 col-sm-6 col-12 mb-4">
             <div class="card">
@@ -83,8 +69,8 @@
                     <i class="fas fa-users  text-success fa-3x"></i>
                   </div>
                   <div class="text-end">
-                    <h3>10</h3>
-                    <p class="mb-0">Client</p>
+                    <h3>{{$users}}</h3>
+                    <p class="mb-0">Clients</p>
                   </div>
                 </div>
               </div>

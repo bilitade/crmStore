@@ -22,10 +22,7 @@ use App\Http\Controllers\UserController;
 */
 
 
-
-// authorize user
-
-
+// authorized user
 
 Route::middleware('auth')->group(function () {
     Route::resource('users',UserController::class);
@@ -35,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::get('orders', [OrderController::class, 'index'])->name('orders');
     Route::get('orders/{id}/items', [OrderController::class, 'show'])->name('orders.show');
     Route::post('orders/{id}/items', [OrderController::class, 'update'])->name('orders.update');
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('home');
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 
 });

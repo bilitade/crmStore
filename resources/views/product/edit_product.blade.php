@@ -37,19 +37,20 @@
                 <span class="text-danger">{{ $message }}</span>
             @enderror
             </div>
+            @if (!empty($categories))
+
+
              <div class="mb-3">
                 <label class="form-label" for="customFile">Categroy</label>
-                <select  name="category" class="form-select ">
-                    <option   value="">select</option>
-                    <option  selected default value="2">Two</option>
-                    <option value="3">Three</option>
-                    <option value="4">Four</option>
-                    <option value="5">Five</option>
-                    <option value="6">Six</option>
-                    <option value="7">Seven</option>
-                    <option value="8">Eight</option>
+                <select  name="category" class="form-select " required>
+                    @foreach ($categories as $category)
+                    <option   value="{{$category->id}}"> {{$category->name}} - {{$category->id}}</option>
+                    @endforeach
+
+
                   </select>
              </div>
+             @endif
             <div class="mb-3">
               <label for="" class="form-label">Price</label>
               <div class="input-group "><span class="input-group-text"> <i class="fa fa-dollar"></i> </span> <input type="number"step="0.01" value="{{$product->price}}"  name="price" class="form-control " type="text"  required/>
@@ -58,7 +59,7 @@
 
 
 
-            <button class="btn btn-primary w-100" type="submit">create</button>
+            <button class="btn btn-primary w-100" type="submit">Update</button>
           </form>
      </div>
 
