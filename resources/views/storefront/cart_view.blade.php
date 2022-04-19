@@ -93,7 +93,7 @@
             @if ($message = Session::get('success'))
 
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Holy guacamole!</strong> <p class="text-green-800">{{ $message }}</p>
+                <strong>Success</strong> <p class="text-green-800">{{ $message }}</p>
                 <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
               </div>
         @endif
@@ -128,6 +128,7 @@
                     <input type="hidden" name="id" value="{{ $item->id}}" >
 
                      <input type="number"class="form-control form-control-sm" name="quantity" value="{{ $item->quantity }}"
+
                       class="w-6 text-center bg-gray-300" />
 
                       <button type="submit" class="btn btn-success mt-2"><i class="fa fa-refresh"></i></button>
@@ -173,6 +174,11 @@
                   <span class="small text-muted me-2">Total:</span> <span class="lead fw-normal">{{ Cart::getTotal() }}$</span>
                 </p>
               </div>
+              <div class="">
+                <p class="mb-0 me-5 d-flex align-items-center">
+                   <a href="/checkout" class="btn btn-success">Go To Checkout</a>
+                </p>
+              </div>
 
             </div>
           </div>
@@ -184,6 +190,22 @@
       </div>
     </div>
   </section>
+
+
+  @section('footer')
+  <footer class="text-center text-white fixed-bottom" style="background-color: #000000;">
+    <!-- Grid container -->
+    <div class="container p-4"></div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgb(0, 0, 0);">
+      © 2022 Copyright
+      <a class="text-white" href="#"> Ethio CRM-STORE</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
 
 
 @endsection

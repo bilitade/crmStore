@@ -27,6 +27,7 @@
                 <div class="card-4 p-4 m-4  ">
 
                         <form enctype="" method="POST" action="{{route('mystore.store')}} " >
+                            @csrf
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Store Name</label>
                                 <input type="text" class="form-control " name="name">
@@ -43,7 +44,7 @@
 
                               </div>
 
-                              <button class="btn btn-secondary w-100" type="submit">update</button>
+                              <button class="btn btn-secondary w-100" type="submit">Create</button>
                             </form>
 
 

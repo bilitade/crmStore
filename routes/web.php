@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MystoreController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StoreFrontController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,25 @@ use App\Http\Controllers\StoreFrontController;
 
 
 
-Route::resource('products', ProductController::class);
-Route::resource('category', CategoryController::class);
+// authorize user
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::resource('users',UserController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('mystore',MystoreController::class)->except(['create','edit','delete','show']);
+    Route::get('orders', [OrderController::class, 'index'])->name('orders');
+    Route::get('orders/{id}/items', [OrderController::class, 'show'])->name('orders.show');
+    Route::post('orders/{id}/items', [OrderController::class, 'update'])->name('orders.update');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+
+});
+
+
+
 
 Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
 Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
@@ -33,17 +51,6 @@ Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear'
 Route::get('checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 Route::get('order', [CartController::class, 'order'])->name('order.index');
 Route::Post('order', [CartController::class, 'order'])->name('order.store');
-
-Route::get('orders', [OrderController::class, 'index'])->name('orders');
-Route::get('orders/{id}/items', [OrderController::class, 'show'])->name('orders.show');
-Route::post('orders/{id}/items', [OrderController::class, 'update'])->name('orders.update');
-
-Route::resource('mystore',MystoreController::class)->except(['create','edit','delete','show']);
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
-
 
 Route::get('/store',[CartController::class, 'index']);
 
@@ -64,8 +71,6 @@ Route::get('/store/{clientID}/{Cslug}/{Pslug}',[StoreFrontController::class,'cat
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('storefront.product_view');
-});
+Route::get('/',[StoreFrontController::class,'allstores']);
 
 ;

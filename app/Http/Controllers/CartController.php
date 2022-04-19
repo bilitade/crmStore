@@ -18,6 +18,7 @@ class CartController extends Controller
         $cartItems = Cart::getContent();
         // dd($cartItems);
         return view('storefront.cart_view', compact('cartItems'));
+
     }
 
     public function index(){
@@ -26,17 +27,23 @@ class CartController extends Controller
         return view('storefront.home_view')->with("products", $products);
     }
 
+
+
     public function addToCart(Request $request)
     {
-        Cart::add([
+        //  dd($request->storeid);
+       $cart= Cart::add([
             'id' => $request->id,
             'name' => $request->name,
+            "storeid"=>$request->storeid,
+            "user"=>"1",
             'price' => $request->price,
             'quantity' => $request->quantity,
-            'attributes' => array(
-                'image' => $request->image,
-            )
-        ]);
+
+        ])
+
+ ;
+
         session()->flash('success', 'Product is Added to Cart Successfully !');
 
         return redirect()->route('cart.list');
@@ -62,7 +69,7 @@ class CartController extends Controller
     public function removeCart(Request $request)
     {
         Cart::remove($request->id);
-        session()->flash('success', 'Item Cart Remove Successfully !');
+        session()->flash('success', 'Item Cart Removed Successfully !');
 
         return redirect()->route('cart.list');
     }
@@ -71,7 +78,8 @@ class CartController extends Controller
     {
         Cart::clear();
 
-        session()->flash('success', 'All Item Cart Clear Successfully !');
+
+        session()->flash('success', 'All Item Cart Cleared Successfully !');
 
         return redirect()->route('cart.list');
     }
@@ -89,10 +97,11 @@ class CartController extends Controller
 
 
 
+      $store_id = intval( Cart::get(1)->storeid);
 
-    $order=Order::Create([
+       $order=Order::Create([
        "customer"=>$request["name"],
-       "store_id"=>1,
+       "store_id"=>$store_id,
        "status"=>"paid",
        "Address"=>$request["Address"],
        "phone"=>$request["phone"],

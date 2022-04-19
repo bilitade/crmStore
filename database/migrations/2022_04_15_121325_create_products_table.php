@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string("slug");
             $table->string("name");
             $table->string("description");
-            $table->string("category_id")->nullable();
+            $table->unsignedBigInteger("category_id");
             $table->string("status")->default('active');
             $table->string("image")->nullable();
-            $table->double("price",5,2 ,true);
+            $table->float('price');
 
             $table->timestamps();
         });

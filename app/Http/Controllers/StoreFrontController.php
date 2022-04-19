@@ -10,12 +10,12 @@ use Illuminate\Http\Request;
 class StoreFrontController extends Controller
 {
 
-    public function allstores($id){
+    public function allstores(){
 
         $stores=Store::all();
 
-        dd($stores);
-          return view('storefront.product_view');
+
+          return view('storefront.home_view')->with('stores',$stores);
       }
 
     public function index($id){
@@ -28,8 +28,7 @@ class StoreFrontController extends Controller
       }
     //  dd($products);
 
-
-        return view('storefront.product_view2')->with(['products'=>$products, 'categories'=>$categories]);
+        return view('storefront.product_view')->with(['products'=>$products, 'categories'=>$categories]);
     }
 
     public function productsByCategory ($storeid,$id){
@@ -41,7 +40,7 @@ class StoreFrontController extends Controller
        $item->category;
      }
 
-     return view('storefront.product_view2')->with(['products'=>$products, 'categories'=>$categories]);
+     return view('storefront.product_view')->with(['products'=>$products, 'categories'=>$categories]);
     }
 
     public function categories($storeid, $Cslug){

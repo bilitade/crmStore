@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
-class CategoryController extends Controller
+class UserController extends Controller
 {
+
+    public function __construct()
+    {
+
+
+        $this->middleware('role:admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,10 +23,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category=Category::where("store_id",Auth::id())->paginate(5);
-
-        return view("category.category_view")->with("categories", $category);
-
+          $users=User::orderBy('id', 'DESC')->paginate(5);
+          return view('manageuser.users_view')->with('users', $users);
     }
 
     /**
@@ -29,7 +34,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+         return view('manageuser.add_user');
     }
 
     /**
@@ -42,24 +47,27 @@ class CategoryController extends Controller
     {
 
         $valid = $request->validate([
-            'name' => "required",
-
-
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        $slug=Str::slug($request['name']);
-         Category::Create([
-            "name"=>$request["name"],
-            "slug"=>$slug,
-            "description"=>$request["description"],
-            "store_id"=>Auth::id()
+        $role=Role::updateOrCreate(
+            ['name' => "admin"],
+        );
+
+
+        $user= User::create([
+            'name' => $valid['name'],
+            'email' => $valid['email'],
+            'password' => Hash::make($valid['password']),
         ]);
+        $user->assignRole('admin');
 
         return back()
-        ->with('success', 'You have successfully created.');
+    ->with('success', 'You User successfully created.');
 
-}
-
+    }
 
     /**
      * Display the specified resource.
@@ -80,8 +88,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $cate=Category::findorFail($id);
-      return view('category.edit_category')->with("category", $cate);
+        //
     }
 
     /**
@@ -93,26 +100,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $valid = $request->validate([
-            'name' => "required",
-
-
-        ]);
-        $cate=Category::find($id);
-
-        $slug=Str::slug($request['name']);
-        $cate->update([
-            "name"=>$request["name"],
-            "slug"=>$slug,
-            "description"=>$request["description"],
-            "store_id"=>Auth::id()
-
-
-        ]);
-
-        return back()
-        ->with('success', 'You have successfully update.');
-
+        //
     }
 
     /**
@@ -123,11 +111,14 @@ class CategoryController extends Controller
      */
     public function destroy(Request $request)
     {
+        $id = $request->id;
+        $user = User::findOrFail($id);
+        $roles=$user->roles;
+        foreach($roles as $role){
+            $user->removeRole($role["name"]);
+        };
+        $user->delete();
 
-     $cate=Category::findorFail($request->id);
-     $cate->delete();
-     return back()
-     ->with('success', 'You have successfully Deleted');
+        return back()->with('success', 'User successfully Deleted.');
     }
-
 }

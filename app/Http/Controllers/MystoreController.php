@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MystoreController extends Controller
 {
@@ -14,7 +15,7 @@ class MystoreController extends Controller
      */
     public function index()
     {
-        $store= Store::first();
+        $store= Store::where("id",Auth::id())->first();
 
 
         return view('dashboard.myStore', compact('store'));
@@ -39,7 +40,7 @@ class MystoreController extends Controller
     public function store(Request $request)
     {
           $store=Store::Create([
-              "id"=> 2,
+              "id"=> Auth::id(),
               "description"=>$request["description"],
               "Address"=>$request["Address"],
               "name"=>$request["name"],

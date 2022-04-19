@@ -58,8 +58,8 @@
             </button>
 
             <!-- Brand -->
-            <a class="navbar-brand" href="#">
-              <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="25" alt="" loading="lazy" />
+            <a class="navbar-brand" href="/">
+              <img src="{{asset('imgs/logo.png')}}" height="25" alt="" loading="lazy" />
             </a>
             <!-- Search form -->
 
@@ -219,19 +219,8 @@
         </main>
     </div> --}}
 
-    <footer class="text-center text-white fixed-bottom" style="background-color: #000000;">
-        <!-- Grid container -->
-        <div class="container p-4"></div>
-        <!-- Grid container -->
 
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgb(0, 0, 0);">
-          © 2020 Copyright
-          <a class="text-white" href="#"> ETSTORE</a>
-        </div>
-        <!-- Copyright -->
-      </footer>
-
+    @yield('footer')
 
 
 

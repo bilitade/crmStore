@@ -49,7 +49,8 @@
                          <input type="hidden" value="{{ $product->name }}" name="name">
                          <input type="hidden" value="{{ $product->price }}" name="price">
                          <input type="hidden" value="{{ $product->image }}"  name="image">
-                         <input type="hidden" value="1" name="quantity">
+                         <input type="hidden" value="{{ $product->store_id }}"  name="store_id">
+                         <input type="hidden" value="" name="quantity">
 
 
                          <h6 class="mb-3">{{ $product->price }}$</h6>
@@ -71,6 +72,23 @@
 
  <!--Grid row-->
 </section>
+
+
+@endsection
+@section('footer')
+<footer class="text-center text-white fixed-bottom" style="background-color: #000000;">
+  <!-- Grid container -->
+  <div class="container p-4"></div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgb(0, 0, 0);">
+    © 2022 Copyright
+    <a class="text-white" href="#"> Ethio CRM-STORE</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
 
 
 @endsection

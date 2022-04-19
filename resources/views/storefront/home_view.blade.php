@@ -66,11 +66,11 @@
           <!--Section: Products v.3-->
           <section class="text-center mb-4">
 
-         @if (!empty($products))
+         @if (!empty($stores))
 
  <!--Grid row-->
  <div class="row wow fadeIn">
-    @foreach ($products as $product)
+    @foreach ($stores as $store)
 <!--Grid column-->
 <div class="col-lg-3 col-md-6 mb-4">
 
@@ -79,14 +79,10 @@
           class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
           data-mdb-ripple-color="light"
         >
-          <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/belt.webp"
-            class="w-100"
-          />
+        <i class="fas fa-store p-4" style="font-size: 5rem"></i>
           <a href="#!">
             <div class="mask">
               <div class="d-flex justify-content-start align-items-end h-100">
-                <h5><span class="badge bg-primary ms-2">New</span></h5>
               </div>
             </div>
             <div class="hover-overlay">
@@ -99,26 +95,12 @@
         </div>
         <div class="card-body">
           <a href="" class="text-reset">
-            <h5 class="card-title mb-3">{{$product->name}}</h5>
+              <h1>{{$store->id}}</h1>
+            <h5 class="card-title mb-3">{{$store->name}}</h5>
           </a>
-          <a href="" class="text-reset">
-            <p>Category</p>
-          </a>
-          <h6 class="mb-3">{{$product->price}}$</h6>
-          <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <input type="hidden" value="{{ $product->id }}" name="id">
-            <input type="hidden" value="{{ $product->name }}" name="name">
-            <input type="hidden" value="{{ $product->price }}" name="price">
-            <input type="hidden" value="{{ $product->image }}"  name="image">
-            <input type="hidden" value="1" name="quantity">
+         <a href="{{route('st.prod', ['clientID'=>$store->id])}}" class="btn btn-success"> Explorer</a>
 
 
-
-
-          <button type="submit" class="btn btn-danger flex-fill ms-1">Add To Cart <i class=" fa fa-shopping-cart"></i></button>
-
-          </form>
         </div>
     </div>
     <!--Card-->
@@ -190,6 +172,27 @@
 
 
 </section>
+
+
+
+
+
+@endsection
+
+@section('footer')
+<footer class="text-center text-white fixed-bottom" style="background-color: #000000;">
+  <!-- Grid container -->
+  <div class="container p-4"></div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgb(0, 0, 0);">
+    © 2022 Copyright
+    <a class="text-white" href="#"> Ethio CRM-STORE</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
 
 
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use League\CommonMark\Node\Query\OrExpr;
 
 class OrderController extends Controller
@@ -16,7 +17,7 @@ class OrderController extends Controller
     public function index()
     {
 
-       $order= Order::paginate();
+       $order= Order::where("store_id",Auth::id())->paginate(5);
 
         return view('orders.order_view')->with('orders', $order);
 

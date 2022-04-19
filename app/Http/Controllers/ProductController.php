@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Store;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -18,9 +19,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(3);
+        $products = Product::where("user_id", Auth::id() )->paginate(3);
 
         return view('product.product_view')->with('products', $products);
+
     }
 
     /**
@@ -30,7 +32,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-      $category =Category::all();
+      $category =Category::where("store_id",Auth::id())->get();
 
         return view('product.create_product')->with("categories" ,$category);
     }
@@ -43,6 +45,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
+         $store=Store::find(Auth::id());
+
+         if(!$store)
+         {
+            return back()
+            ->with('error', 'first  create store before adding product');
+    }
+
+
         //  return dd($request->all());
 
         $valid = $request->validate([
@@ -56,14 +68,16 @@ class ProductController extends Controller
 
         $request->image->move(public_path('uploads/product_image'), $imageName);
         $slug=Str::slug($request['name']);
+        $categoryid = intval( $request['category'] );
+
         $post = Product::create([
             'name' => $valid['name'],
-            'store_id' => 1,
+            'store_id' => Auth::id(),
             "slug"=>$slug,
             "status" => "active",
-            "category_id" => 1,
+            "category_id" => $categoryid,
             'description' => $request["description"],
-            'user_id' => 1,
+            'user_id' => Auth::id(),
             'price' => $request["price"],
             'image' => $imageName,
 
@@ -76,8 +90,8 @@ class ProductController extends Controller
         */
 
         return back()
-            ->with('success', 'You have successfully created.')
-            ->with('image', $imageName);
+            ->with('success', 'You have successfully created.');
+
     }
 
 

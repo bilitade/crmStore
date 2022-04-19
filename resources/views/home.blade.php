@@ -43,10 +43,17 @@
         <a href="/orders" class="list-group-item list-group-item-action py-2 ripple  {{  request()->routeIs('orders*') ? 'active' : '' }} "><i
             class="fas fa fa-truck fa-fw me-3"></i><span>Orders</span></a>
 
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-users fa-fw me-3"></i><span>Manage User</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-globe fa-fw me-3"></i><span>Manage Store</span></a>
+            @role('admin')
+            <a href="{{route('users.index')}}" class="list-group-item list-group-item-action py-2 ripple {{  request()->routeIs('users*') ? 'active' : '' }}"><i
+                class="fas fa-users fa-fw me-3"></i><span>Manage User</span></a>
+        @else
+
+        @endrole
+
+
+
+        <a href="/mystore" class="list-group-item list-group-item-action py-2 ripple"><i
+            class="fas fa-globe fa-fw me-3"></i><span>My Store</span></a>
 
       </div>
     </div>
@@ -60,7 +67,7 @@
   <!--Main layout-->
   <main style="margin-top: 58px">
     <div class="container pt-4">
-     
+
     @yield('page')
 
 
@@ -70,6 +77,25 @@
   <!--Main layout-->
 
 @endsection
+
+@section('footer')
+<footer class="text-center text-white fixed-bottom" style="background-color: #000000;">
+  <!-- Grid container -->
+  <div class="container p-4"></div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgb(0, 0, 0);">
+    © 2022 Copyright
+    <a class="text-white" href="#"> Ethio CRM-STORE</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+
+
+@endsection
+
 
 
 

@@ -75,19 +75,19 @@
                                   <a href="" class="text-reset">
                                     <h5 class="card-title mb-3"></h5>
                                   </a>
-
+                                  <h6 class="text-center"> {{$product->name}}</h6>
                                   <a href="" class="text-reset">
-                                    <p class="text-center"> {{ $product->name}}</p>
-                                </a>
                                     <p class="text-center"> <span class="badge bg-success">{{ $product->category->name}}</span></p>
+
+
                                   </a>
                                   <h6 class="mb-3 text-center"> <strong>{{ $product->price }}</strong> $</h6>
-                                  <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                                  <form action="{{ route('cart.store') }}" method="POST">
                                     @csrf
                                     <input type="hidden" value="{{ $product->id }}" name="id">
                                     <input type="hidden" value="{{ $product->name }}" name="name">
                                     <input type="hidden" value="{{ $product->price }}" name="price">
-                                    <input type="hidden" value="{{ $product->image }}"  name="image">
+                                    <input type="hidden" value="{{ $product->store_id }}"  name="storeid">
                                     <input type="hidden" value="1" name="quantity">
 
 
@@ -139,6 +139,23 @@
 
  <!--Grid row-->
 </section>
+
+
+@endsection
+@section('footer')
+<footer class="text-center text-white fixed-bottom" style="background-color: #000000;">
+  <!-- Grid container -->
+  <div class="container p-4"></div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgb(0, 0, 0);">
+    © 2022 Copyright
+    <a class="text-white" href="#"> Ethio CRM-STORE</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
 
 
 @endsection

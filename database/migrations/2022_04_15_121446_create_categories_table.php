@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("name");
             $table->unsignedBigInteger("store_id");
             $table->string("slug");
+            $table->string("description");
             $table->string("image")->nullable();
             $table->timestamps();
         });
