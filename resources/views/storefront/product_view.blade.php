@@ -10,12 +10,12 @@
       <!--Main layout-->
       <main  class="p-4 m-4">
         <div  class=" mt-4 container">
-            <div style="margin-bottom:25vh" class="row">
+            <div style="margin-bottom:50vh" class="row">
                 <div   class=" col-md-3 ">
                     <aside>
                         <div class="card ">
                             <div class="card-body">
-                                <h4 class="card-title">Store</h4>
+                                <h4 class="card-title"> Client Store</h4>
                                 <div id="accordion-1" class="accordion" role="tablist">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" role="tab"><button class="accordion-button" data-mdb-toggle="collapse" data-mdb-target="#accordion-1 .item-1" aria-expanded="true" aria-controls="accordion-1 .item-1">Categories</button></h2>
@@ -46,7 +46,7 @@
                     <div class="row">
                      @if (!empty($products))
                          @foreach ($products as $product)
-                         <div class="col col-md-3 m-1">
+                         <div class="col col-xl-3 m-1">
 
                             <div class="card">
                                 <div
@@ -105,7 +105,7 @@
                          @endforeach
 
 
-                        @endif
+
 
 
 
@@ -117,23 +117,12 @@
                     </div>
                 </div>
 
-                <nav class="float-right" aria-label="...">
-                    <ul class="pagination">
-                      <li class="page-item disabled">
-                        <a class="page-link">Previous</a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item active" aria-current="page">
-                        <a class="page-link" href="#">2 <span class="visually-hidden">(current)</span></a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                      </li>
-                    </ul>
-                  </nav>
-            </div>
+                <div class="pt-4">
+                    {!! $products->links() !!}
 
+                </div>
+            </div>
+            @endif
 
 
 
@@ -143,7 +132,7 @@
 
 @endsection
 @section('footer')
-<footer class="text-center text-white fixed-bottom" style="background-color: #000000;">
+<footer style="margin-top:15vh" class="text-center text-white fixed-bottom" style="background-color: #000000;">
   <!-- Grid container -->
   <div class="container p-4"></div>
   <!-- Grid container -->

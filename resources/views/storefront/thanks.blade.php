@@ -42,7 +42,7 @@
 
 @endsection
 @section('footer')
-<footer class="text-center text-white fixed-bottom" style="background-color: #000000;">
+<footer style="margin-top:15vh"  class="text-center text-white fixed-bottom" style="background-color: #000000;">
   <!-- Grid container -->
   <div class="container p-4"></div>
   <!-- Grid container -->

@@ -12,7 +12,7 @@ class StoreFrontController extends Controller
 
     public function allstores(){
 
-        $stores=Store::all();
+        $stores=Store::paginate(1);
 
 
           return view('storefront.home_view')->with('stores',$stores);
@@ -20,7 +20,7 @@ class StoreFrontController extends Controller
 
     public function index($id){
 
-      $products=Product::where('store_id','=', $id)->get();
+      $products=Product::where('store_id','=', $id)->paginate(8);
       $categories=Category::where('store_id',"=" ,$id)->get();
       foreach($products as $item){
 
@@ -32,7 +32,7 @@ class StoreFrontController extends Controller
     }
 
     public function productsByCategory ($storeid,$id){
-     $products=Product::where('store_id',"=" ,$storeid)->where( 'category_id','=',$id)->get();
+     $products=Product::where('store_id',"=" ,$storeid)->where( 'category_id','=',$id)->paginate(8);
 
      $categories=Category::where('store_id',"=" ,$storeid)->get();
      foreach($products as $item){

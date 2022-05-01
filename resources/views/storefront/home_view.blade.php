@@ -95,7 +95,7 @@
         </div>
         <div class="card-body">
           <a href="" class="text-reset">
-              <h1>{{$store->id}}</h1>
+
             <h5 class="card-title mb-3">{{$store->name}}</h5>
           </a>
          <a href="{{route('st.prod', ['clientID'=>$store->id])}}" class="btn btn-success"> Explorer</a>
@@ -115,7 +115,7 @@
          @else
 
 
-         @endif
+
 
 
 
@@ -124,48 +124,13 @@
           <!--Section: Products v.3-->
 
 
+          <div class="pt-4">
+            {!! $stores->links() !!}
+
+        </div>
 
 
-          <!--Pagination-->
-          <nav class="d-flex justify-content-center wow fadeIn">
-            <ul class="pagination pg-blue">
-
-              <!--Arrow left-->
-              <li class="page-item disabled">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-
-              <li class="page-item active">
-                <a class="page-link" href="#">1
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">2</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">3</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">4</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">5</a>
-              </li>
-
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <!--Pagination-->
-
+        @endif
         </div>
       </main>
       <!--Main layout-->
@@ -180,7 +145,7 @@
 @endsection
 
 @section('footer')
-<footer class="text-center text-white fixed-bottom" style="background-color: #000000;">
+<footer  style="margin-top:15vh"class="text-center text-white fixed-bottom" style="background-color: #000000;">
   <!-- Grid container -->
   <div class="container p-4"></div>
   <!-- Grid container -->
